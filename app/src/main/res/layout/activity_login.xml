@@ -1,9 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="login"
+            type="com.example.sopt_architecture.viewmodel.LoginViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="50dp"
+        tools:context=".view.LoginActivity">
+        <ImageView
+            android:id="@+id/iv_instaLogo"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="7:3"
+            app:layout_constraintWidth_percent="0.7"
+            android:layout_marginTop="50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/instagram"/>
+
+        <Button
+            android:id="@+id/btn_facebookLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/iv_instaLogo"
+            android:backgroundTint="#458eff"
+            android:text="facebook으로 계속하기"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:id="@+id/cl_line"
+            app:layout_constraintTop_toBottomOf="@+id/btn_facebookLogin">
+            <FrameLayout
+                android:id="@+id/lines"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tv_or"
+                app:layout_constraintHorizontal_weight="5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="#6C6C6C"/>
+            <TextView
+                android:id="@+id/tv_or"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/lines2"
+                app:layout_constraintStart_toEndOf="@+id/lines"
+                android:text="또는"
+                android:layout_marginHorizontal="14dp"
+                app:layout_constraintHorizontal_weight="5"
+                android:textColor="#6C6C6C"/>
+            <FrameLayout
+                android:id="@+id/lines2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_weight="10"
+                app:layout_constraintStart_toEndOf="@+id/tv_or"
+                app:layout_constraintHorizontal_weight="5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="#6C6C6C"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <EditText
+            android:id="@+id/et_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/cl_line"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:background="#F4F4F4"
+            android:textSize="14sp"
+            android:text="@{login.userId}"
+            android:hint="전화번호, 사용자 이름 또는 이메일"/>
+        <EditText
+            android:id="@+id/et_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:background="#F4F4F4"
+            android:inputType="textPassword"
+            android:text="@{login.userPw}"
+            app:layout_constraintTop_toBottomOf="@+id/et_id"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="비밀번호"/>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그인"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="#8AB4F6"
+            app:layout_constraintTop_toBottomOf="@+id/et_pw"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+            android:id="@+id/tv_noUser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login"
+            app:layout_constraintEnd_toStartOf="@+id/tv_signUp"
+            app:layout_constraintStart_toStartOf="@id/et_id"
+            android:paddingHorizontal="40dp"
+            android:text="계정이 없으신가요?"/>
+        <TextView
+            android:id="@+id/tv_signUp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@+id/tv_noUser"
+            android:text="가입하기"
+            android:textSize="15sp"
+            android:textColor="#458EFF"
+            android:textStyle="bold"
+            android:paddingHorizontal="30dp"
+            app:layout_constraintTop_toTopOf="@+id/tv_noUser"
+            app:layout_constraintEnd_toEndOf="@id/et_id"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
